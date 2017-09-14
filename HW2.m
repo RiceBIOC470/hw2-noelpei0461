@@ -15,6 +15,10 @@ zz = meannonan(xx);
 %zz is a single number (the average of all non-NaN entries in xx). Explain
 %this behavior. 
 
+% when NaN is input in the matrix, the regular mean cannot exclude it, and only do the mean for every column, and gives a row vector contains NaN in it. But for zz, it eliminates the NaN inside it, then mean function can take the average for all numbers inside. 
+%Thus yy gives a row vector, while zz gives a single number.
+
+
 % Part 2. Modify the meannonan code so that it behaves as the mean function
 % and produces a row vector where each entry is the average of each column
 % and in the column with a NaN, this NaN is ignored. 
