@@ -120,6 +120,7 @@ for i=1:length(k)
     end
 end
 ff=disp(distmax)|disp(start)|disp(stop)
+end
 
 
 % Part 3. Write another function called probabilityORF that utilizes the functions from 
