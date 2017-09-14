@@ -48,6 +48,25 @@ end
 % Part 1. Fill in the function randdnaseq.m in this repository so that it returns a random sequence
 % of length N. 
 
+function rr=randdnaseq(x)
+s=randi(4,1,x);
+% set up an array with 500 random numbers, range 1 to 4 in it.
+d='';
+for ii=1:x
+    if s(ii)==1
+        d(ii)='A'
+    elseif s(ii)==2
+        d(ii)='T'
+    elseif s(ii)==3
+        d(ii)='G'
+    else d(ii)='C'
+    end
+%For every 1 in s, input A in d; and substitue rest values as well.
+end
+rr=d;
+end
+
+
 % Part 2. Fill in the function findORF.m in this repository so that takes any dna
 % sequence as an input and returns the length of the longest open
 % reading frame and the positions of the start and stop codons. 
