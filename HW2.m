@@ -22,6 +22,25 @@ zz = meannonan(xx);
 % Part 2. Modify the meannonan code so that it behaves as the mean function
 % and produces a row vector where each entry is the average of each column
 % and in the column with a NaN, this NaN is ignored. 
+function mm=meannonan(x)
+ma=mean(x);
+len=length(ma);
+c=[]
+for i=1:len
+    mb=mean(x(:,i));
+    if ~isnumeric(x)
+        c(i)=mb
+    else
+        notin=isnan(x)|isinf(x);
+        x(notin)=[];
+        c(i)=mean(x(:,i))
+    end
+mm=c
+end
+end
+
+
+
 
 %% Problem 2. ORFs using functions
 % In this problem we will use functions to simplify and extend our code from HW1, prob 2 
