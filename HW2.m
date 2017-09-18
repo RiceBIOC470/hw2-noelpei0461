@@ -209,6 +209,31 @@ Possibility(N)
 % translation should start from the 1st, 2nd or 3rd base pair (that is,
 % which reading frame to use). Make your code returns an error and
 % appropriate message if frame isn't 1,2, or 3. 
+function ss=dna2protein(str,x)
+a=1
+s=''
+len=length(str);
+k=strfind(str,'ATG');
+filename='codons.csv';
+I=readtable(filename);
+I=table2array(I(:,1:2));
+I=cell2mat(I);
+for ii=k(x):3:len-2
+    for i=1:64
+        if str(ii:ii+2)==I(i,4:6)
+            s(a:a+2)=I(i,1:3);
+            a=a+3;
+        elseif d(ii:ii+2)=='TAA'
+            break
+        elseif d(ii:ii+2)=='TAG'
+            break
+        elseif d(ii:ii+2)=='TGA'
+            break
+        end
+    end
+end
+ss=s
+end
 
 
 % Part 2. Write code to turn your protein sequence back into DNA sequence.
