@@ -242,6 +242,32 @@ end
 % different codons that correspond to the amino acid Gly. For a first pass,
 % choose one of these codons at random.
 %
+function ss=protein2dna(str,x)
+a=1
+s=''
+len=length(str);
+k=strfind(str,'ATG');
+filename='codons.csv';
+I=readtable(filename);
+I=table2array(I(:,1:2));
+I=cell2mat(I);
+for ii=k(x):3:len-2
+    ax=0
+    kx=[]
+    for i=1:64
+        if str(ii:ii+2)==I(i,1:3)
+            ax=ax+1;
+            kx(ax)=i;
+            xa=randi(ax,1,1);
+            s(a:a+2)=I(k(1)-1+xa,4:6);
+            a=a+3;
+        elseif d(ii:ii+2)=='End'
+            break
+        end
+    end
+end
+ss=s
+end
 % Part 3. The third column of the codons.csv file contains the frequency of
 % this codon's use in the human proteome in units of number of appearances per
 % thousand codons. Some codons are used more than others. For example,
