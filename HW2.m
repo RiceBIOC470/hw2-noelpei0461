@@ -292,33 +292,30 @@ end
 % different codons that correspond to the amino acid Gly. For a first pass,
 % choose one of these codons at random.
 %
-function ss=protein2dna(str,x)
-a=1
-s=''
+function ss=protein2dna(str)
+a=1;
+s='';
 len=length(str);
-k=strfind(str,'ATG');
 filename='codons.csv';
 I=readtable(filename);
 I=table2array(I(:,1:2));
 I=cell2mat(I);
-for ii=k(x):3:len-2
-    ax=0
-    kx=[]
+for ii=1:3:len-2
+    ax=0;
+    kx=[];
     for i=1:64
         if str(ii:ii+2)==I(i,1:3)
             ax=ax+1;
             kx(ax)=i;
-            xa=randi(ax,1,1);
-            s(a:a+2)=I(k(1)-1+xa,4:6);
-            
-        elseif d(ii:ii+2)=='End'
+        elseif str(ii:ii+2)=='End'
             break
-            
         end
-        a=a+3;
     end
+    xa=randi(ax,1,1);
+    s(a:a+2)=I(kx(1)-1+xa,4:6);
+    a=a+3;
 end
-ss=s
+ss=s;
 end
 % Part 3. The third column of the codons.csv file contains the frequency of
 % this codon's use in the human proteome in units of number of appearances per
@@ -334,7 +331,7 @@ end
 % In other words, for any amino acid, it always uses the codon that appears
 % most frequently in the human proteome. 
 %
-function ss=protein2dnaOptimized(str,x)
+function ss=protein2dnaOptimized(str)
 a=1
 s=''
 len=length(str);
@@ -344,26 +341,32 @@ I=readtable(filename);
 Ix=readtable(filename);
 I=table2array(I(:,1:2));
 I=cell2mat(I);
-Ix=table2array(I(:,3);
-for ii=k(x):3:len-2
+Ix=table2array(Ix(:,3));
+for ii=1:3:len-2
     ax=0
     axx=1
     kx=[]
-    kxx=[0]
+    kxx=[]
     for i=1:64
         if str(ii:ii+2)==I(i,1:3)
             ax=ax+1;
             axx=axx+1;
             kx(ax)=i;
-            kxx(axx)=Ix(i,3)
-            if kxx(axx)>kxx(axx-1)
-                s(a:a+2)=I(k(ax),4:6);
-            end
-        elseif d(ii:ii+2)=='End'
+            kxx(axx)=Ix(i);
+        elseif str(ii:ii+2)=='End'
             break
         end
-        a=a+3;
     end
+    kxx
+    maxkxx=max(kxx);
+    len=length(kxx)
+    for iii=1:len
+        if kxx(iii)==maxkxx
+            axxx=iii-1;
+        end
+    end
+    s(a:a+2)=I(kx(axxx),4:6);
+    a=a+3;
 end
-ss=s
+ss=s;
 end
