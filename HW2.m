@@ -127,7 +127,7 @@ end
 % Parts 1 and 2. It should take two inputs - a sequence length (N) and an length  of an ORF (N_ORF) and
 % returns the probability that that a sequence of length N contains an ORF
 % of at least length N_ORF
-function Css=Possibility(N,Nx)
+function Css=PossibilityORF(N,Nx)
     Rxx=[];
     %Rxx is an array that will be used to store the possibility values
     for xxx=3:N
@@ -185,12 +185,21 @@ function Css=Possibility(N,Nx)
 Css=Rxx(N)
 end
 
-Possibility(N)
+PossibilityORF(N)
 % Part4. Write  a final function called plotProbabilityORF.m which takes
 % N_ORF as an argument and makes a plot of the probabily of having an
 % ORF at least this long as a function of the dnasequence length. Decide how the
 % code should determine the lengths of dna sequence to test and implement
 % your decision. 
+function xx=plotProbabilityORF(N_ORF)
+Seql=N_ORF*10
+k=[]
+k(1)=0
+for i=1:Seql
+    k(i+1)=ProbabilityORF(i,N_ORF);
+end
+Seqlx=0:1:Seql;
+xx=plot(Seqlx,k)
 
 % Part 5. Write code that uses your function from part 4 to make a single
 % plot with separate curves for ORF lengths 100,200,300,and 400. Make sure
