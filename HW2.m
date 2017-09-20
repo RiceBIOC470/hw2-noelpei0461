@@ -218,11 +218,11 @@ xx=plot(Seqlx,k)
 % translation should start from the 1st, 2nd or 3rd base pair (that is,
 % which reading frame to use). Make your code returns an error and
 % appropriate message if frame isn't 1,2, or 3. 
-function ss=dna2protein(str,x)
+function ss=dna2protein(d,x)
 a=1
 s=''
-len=length(str);
-k=strfind(str,'ATG');
+len=length(d);
+k=strfind(d,'ATG');
 filename='codons.csv';
 I=readtable(filename);
 I=table2array(I(:,1:2));
@@ -231,11 +231,10 @@ if x~=1
     if x~=2
         if x~=3
             disp('error')
-            break
         else
             for ii=3:3:len-2
                 for i=1:64
-                    if str(ii:ii+2)==I(i,4:6)
+                    if d(ii:ii+2)==I(i,4:6)
                         s(a:a+2)=I(i,1:3);
                         a=a+3;
                     elseif d(ii:ii+2)=='TAA'
@@ -253,7 +252,7 @@ if x~=1
     else
         for ii=2:3:len-2
                 for i=1:64
-                    if str(ii:ii+2)==I(i,4:6)
+                    if d(ii:ii+2)==I(i,4:6)
                         s(a:a+2)=I(i,1:3);
                         a=a+3;
                     elseif d(ii:ii+2)=='TAA'
@@ -269,7 +268,7 @@ if x~=1
 else
     for ii=1:3:len-2
                 for i=1:64
-                    if str(ii:ii+2)==I(i,4:6)
+                    if d(ii:ii+2)==I(i,4:6)
                         s(a:a+2)=I(i,1:3);
                         a=a+3;
                     elseif d(ii:ii+2)=='TAA'
