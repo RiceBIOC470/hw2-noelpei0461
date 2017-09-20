@@ -307,8 +307,6 @@ for ii=1:3:len-2
         if str(ii:ii+2)==I(i,1:3)
             ax=ax+1;
             kx(ax)=i;
-        elseif str(ii:ii+2)=='End'
-            break
         end
     end
     xa=randi(ax,1,1);
@@ -353,8 +351,6 @@ for ii=1:3:len-2
             axx=axx+1;
             kx(ax)=i;
             kxx(axx)=Ix(i);
-        elseif str(ii:ii+2)=='End'
-            break
         end
     end
     kxx
