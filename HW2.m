@@ -206,7 +206,16 @@ xx=plot(Seqlx,k)
 % Part 5. Write code that uses your function from part 4 to make a single
 % plot with separate curves for ORF lengths 100,200,300,and 400. Make sure
 % your plot has appropriate axis labels and legend. 
-
+plotProbabilityORF(100);
+hold on; 
+plotProbabilityORF(200);
+hold on;
+plotProbabilityORF(300);
+hold on;
+plotProbabilityORF(400);
+xlabel('Sequence length', 'FontSize', 18);
+ylabel('Probability', 'FontSize', 18);
+legend({'100','200','300','400'},'FontSize', 18);
 %% Problem 3. Codon translation and optimization
 
 % DNA sequence gets translated into protein through a code known as the
