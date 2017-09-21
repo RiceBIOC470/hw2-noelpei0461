@@ -233,11 +233,6 @@ legend({'100','200','300','400'},'FontSize', 18);
 % translation should start from the 1st, 2nd or 3rd base pair (that is,
 % which reading frame to use). Make your code returns an error and
 % appropriate message if frame isn't 1,2, or 3. 
-function ss=dna2protein(d,x)
-a=1;
-s='';
-len=length(d);
-filename='codons.csv';
 I=readtable(filename);
 I=table2array(I(:,1:2));
 I=cell2mat(I);
@@ -245,7 +240,7 @@ I=cell2mat(I);
 if x~=1
     if x~=2
         if x~=3
-            disp('error')
+            s(1:5)='error';
             %if the input is not 1,2,3 returns an error.
         else
             for ii=3:3:len-2
@@ -276,9 +271,9 @@ else
                     end
                 end
     end    
+end
 ss=s;
 end
-
 
 
 
