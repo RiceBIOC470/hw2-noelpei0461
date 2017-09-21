@@ -1,5 +1,4 @@
-function randomSeq = randdnaseq(N)
-% returns a random dna sequence of length N
+function rr=randdnaseq(x)
 s=randi(4,1,x);
 % set up an array with 500 random numbers, range 1 to 4 in it.
 d='';
@@ -14,5 +13,5 @@ for ii=1:x
     end
 %For every 1 in s, input A in d; and substitue rest values as well.
 end
-randomSeq=d;
+rr=d;
 end
