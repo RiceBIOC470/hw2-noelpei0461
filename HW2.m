@@ -15,7 +15,7 @@ zz = meannonan(xx);
 %zz is a single number (the average of all non-NaN entries in xx). Explain
 %this behavior. 
 
-% when NaN is input in the matrix, the regular mean cannot exclude it, and only do the mean for every column, and gives a row vector contains NaN in it. But for zz, it eliminates the NaN inside it, then mean function can take the average for all numbers inside. 
+% Answer: when NaN is input in the matrix, the regular mean cannot exclude it, and only do the mean for every column, and gives a row vector contains NaN in it. But for zz, it eliminates the NaN inside it, then mean function can take the average for all numbers inside. 
 %Thus yy gives a row vector, while zz gives a single number.
 
 
@@ -192,7 +192,9 @@ ProbabilityORF(N)
 % your decision. 
 function xx=plotProbabilityORF(N_ORF)
 Seql=N_ORF*2;
+%make the sequence length at most 2 times of the ORF length
 k=[];
+% k is an array used for storaging probability value of each sequence length.
 k(1)=0;
 for i=1:Seql
     if i<N_ORF
@@ -202,7 +204,9 @@ for i=1:Seql
     end
 end
 Seqlx=0:1:Seql;
-xx=plot(Seqlx,k)
+%Seqlx is used for x axis.
+xx=plot(Seqlx,k);
+
 % Part 5. Write code that uses your function from part 4 to make a single
 % plot with separate curves for ORF lengths 100,200,300,and 400. Make sure
 % your plot has appropriate axis labels and legend. 
@@ -230,32 +234,25 @@ legend({'100','200','300','400'},'FontSize', 18);
 % which reading frame to use). Make your code returns an error and
 % appropriate message if frame isn't 1,2, or 3. 
 function ss=dna2protein(d,x)
-a=1
-s=''
+a=1;
+s='';
 len=length(d);
-k=strfind(d,'ATG');
 filename='codons.csv';
 I=readtable(filename);
 I=table2array(I(:,1:2));
 I=cell2mat(I);
+%I is the matrix containing amino acids and corresponding codons infomation.
 if x~=1
     if x~=2
         if x~=3
             disp('error')
+            %if the input is not 1,2,3 returns an error.
         else
             for ii=3:3:len-2
                 for i=1:64
                     if d(ii:ii+2)==I(i,4:6)
                         s(a:a+2)=I(i,1:3);
                         a=a+3;
-                    elseif d(ii:ii+2)=='TAA'
-                        break
-                    elseif d(ii:ii+2)=='TAG'
-                        break
-                    elseif d(ii:ii+2)=='TGA'
-                        break
-                    else 
-                        break
                     end
                 end
             end
@@ -266,12 +263,6 @@ if x~=1
                     if d(ii:ii+2)==I(i,4:6)
                         s(a:a+2)=I(i,1:3);
                         a=a+3;
-                    elseif d(ii:ii+2)=='TAA'
-                        break
-                    elseif d(ii:ii+2)=='TAG'
-                        break
-                    elseif d(ii:ii+2)=='TGA'
-                        break
                     end
                 end
         end
@@ -282,16 +273,10 @@ else
                     if d(ii:ii+2)==I(i,4:6)
                         s(a:a+2)=I(i,1:3);
                         a=a+3;
-                    elseif d(ii:ii+2)=='TAA'
-                        break
-                    elseif d(ii:ii+2)=='TAG'
-                        break
-                    elseif d(ii:ii+2)=='TGA'
-                        break
                     end
                 end
     end    
-ss=s
+ss=s;
 end
 
 
@@ -314,6 +299,7 @@ I=cell2mat(I);
 for ii=1:3:len-2
     ax=0;
     kx=[];
+    %for each amino acid, check the codons first, then random generate a number whose max is the number of codons, and choose the approperiate codon.
     for i=1:64
         if str(ii:ii+2)==I(i,1:3)
             ax=ax+1;
@@ -356,6 +342,7 @@ for ii=1:3:len-2
     axx=1
     kx=[]
     kxx=[]
+    %kx is used to store all corresponding codons row location, while kxx is used to store to corresponding probabilities.
     for i=1:64
         if str(ii:ii+2)==I(i,1:3)
             ax=ax+1;
@@ -364,7 +351,7 @@ for ii=1:3:len-2
             kxx(axx)=Ix(i);
         end
     end
-    kxx
+    %find out the biggest probability and use the correponding codons as the one to write on the string.
     maxkxx=max(kxx);
     len=length(kxx)
     for iii=1:len
