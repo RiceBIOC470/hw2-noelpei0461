@@ -1,3 +1,17 @@
+% GB Comments
+1a. 100
+1b. 100
+2a. 100
+2b. 50 in your findORF function, there are not enough output arguments to correctly answer the question. I return many errors trying to correct this issue. 
+2c. 100
+2d. 100
+2e. 100
+3a.  100
+3b. 100 
+3c.  100
+Overall: 95
+
+
 %% Problem 1. 
 % in the repository you will find the meannonan.m function we discussed in
 % class which produced the mean of a vector of numbers that ignores values
